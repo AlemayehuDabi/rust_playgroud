@@ -1,5 +1,6 @@
 use std::io;
 use rand::Rng;
+use std::cmp::Ordering;
 
 fn main() {
     println!("Guess a Number b/n 1 and 10!");
@@ -14,9 +15,18 @@ fn main() {
     println!("You guessed {}", user_guess);
     println!("Computer guessed {}", computer_guess);
 
-    if user_guess == computer_guess {
-        println!("You won!");
-    } else {
-        println!("You lost!");
+    // if user_guess == computer_guess {
+    //     println!("You won!");
+    // } else {
+    //     println!("You lost!");
+    // }
+
+    // converting this in ordering and match
+
+    match user_guess.cmp(&computer_guess) {
+        Ordering::Less => println!("Too small! You lose."),
+        Ordering::Greater => println!("Too big! You lose."),
+        Ordering::Equal => println!("You won!")
     }
+    
 }
